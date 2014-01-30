@@ -56,11 +56,12 @@ cn.ui.Toolbox.prototype.getDragDropGroup = function() {
   return this.dragDropGroup_;
 };
 
+cn.ui.Toolbox.prototype.getDragDropGroup = function() {
+  return this.dragDropGroup_;
+};
 
-/** @type {!goog.fx.DragDropGroup} @private */
-cn.ui.Toolbox.prototype.dragDropGroup_;
-
-
+cn.ui.Toolbox.prototype.update = function(tools) {
+};
 
 /**
  * @param {goog.dom.DomHelper=} opt_domHelper Optional DOM helper.
@@ -87,7 +88,24 @@ cn.ui.ConditionToolbox = function(opt_domHelper) {
 };
 goog.inherits(cn.ui.ConditionToolbox, cn.ui.Toolbox);
 
-
+cn.ui.ConditionToolbox.prototype.update = function(tools) {
+  this.removeChildren(true);
+  goog.object.forEach(
+      tools,
+      function(tool) {
+        this.addChild(
+          new cn.ui.DragDropComponent(
+              [
+                cn.constants.CONDITION_CLASS_NAME,
+                cn.constants.CONDITION_CLASS_NAMES[tool]
+              ],
+              this.getDragDropGroup(),
+              {f: -1, i: -1, condition: cn.model.Condition[tool]}
+              ),
+          true);
+      },
+      this);
+}
 
 /**
  * @param {goog.dom.DomHelper=} opt_domHelper Optional DOM helper.
@@ -113,3 +131,22 @@ cn.ui.CommandToolbox = function(opt_domHelper) {
       this);
 };
 goog.inherits(cn.ui.CommandToolbox, cn.ui.Toolbox);
+
+cn.ui.CommandToolbox.prototype.update = function(tools) {
+  this.removeChildren(true);
+  goog.object.forEach(
+      tools,
+      function(tool) {
+        this.addChild(
+          new cn.ui.DragDropComponent(
+              [
+                cn.constants.COMMAND_CLASS_NAME,
+                cn.constants.COMMAND_CLASS_NAMES[tool]
+              ],
+              this.getDragDropGroup(),
+              {f: -1, i: -1, command: cn.model.Command[tool]}
+              ),
+          true);
+      },
+      this);
+}

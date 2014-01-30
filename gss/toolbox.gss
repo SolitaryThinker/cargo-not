@@ -1,15 +1,22 @@
 .cn-toolbox-container {
   display: inline-block;
-  margin-top: 15px;
+  margin-top: 45px;
 }
 
 .cn-full-toolbox {
   background-color: white;
-  padding: 15px 5px 5px;
+  padding: 25px 10px 5px;
+  width: 450px;
+  height: 130px;
 }
 
 .cn-toolbox {
   margin: 0 auto;
+  height: 60px;
+}
+
+.cn-toolbox:first-child {
+  height: 40px;
 }
 
 @defmixin condition-command(HEIGHT) {

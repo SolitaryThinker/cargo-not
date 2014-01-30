@@ -100,6 +100,9 @@ cn.constants.ANIMATED_GAME_CANVAS_CLASS_NAME =
 /** @type {string} @const */
 cn.constants.LEVEL_SELECTOR_CLASS_NAME = goog.getCssName('cn-level-selector');
 
+/** @type {string} @const */
+cn.constants.RIGHT_PANEL_CONTAINER =
+    goog.getCssName('cn-right-panel-container');
 
 /** @type {string} @const */
 cn.constants.LEVEL_SELECTOR_CONTAINER =
@@ -123,13 +126,13 @@ cn.constants.COMMAND_CLASS_NAME = goog.getCssName('cn-command');
  * @enum {string}
  */
 cn.constants.COMMAND_CLASS_NAMES = {
-  LEFT: goog.getCssName('cn-command-left'),
-  RIGHT: goog.getCssName('cn-command-right'),
-  DOWN: goog.getCssName('cn-command-down'),
-  F0: goog.getCssName('cn-command-f0'),
-  F1: goog.getCssName('cn-command-f1'),
-  F2: goog.getCssName('cn-command-f2'),
-  F3: goog.getCssName('cn-command-f3')
+  'LEFT': goog.getCssName('cn-command-left'),
+  'RIGHT': goog.getCssName('cn-command-right'),
+  'DOWN': goog.getCssName('cn-command-down'),
+  'F0': goog.getCssName('cn-command-f0'),
+  'F1': goog.getCssName('cn-command-f1'),
+  'F2': goog.getCssName('cn-command-f2'),
+  'F3': goog.getCssName('cn-command-f3')
 };
 
 
@@ -138,12 +141,12 @@ cn.constants.COMMAND_CLASS_NAMES = {
  * @enum {string}
  */
 cn.constants.CONDITION_CLASS_NAMES = {
-  NONE: goog.getCssName('cn-condition-none'),
-  ANY: goog.getCssName('cn-condition-any'),
-  RED: goog.getCssName('cn-condition-red'),
-  GREEN: goog.getCssName('cn-condition-green'),
-  BLUE: goog.getCssName('cn-condition-blue'),
-  YELLOW: goog.getCssName('cn-condition-yellow')
+  'NONE': goog.getCssName('cn-condition-none'),
+  'ANY': goog.getCssName('cn-condition-any'),
+  'RED': goog.getCssName('cn-condition-red'),
+  'GREEN': goog.getCssName('cn-condition-green'),
+  'BLUE': goog.getCssName('cn-condition-blue'),
+  'YELLOW': goog.getCssName('cn-condition-yellow')
 };
 
 

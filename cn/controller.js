@@ -261,6 +261,8 @@ cn.controller.loadLevel = function(game, ui, name, levelData) {
   game.loadLevel(levelData);
   ui.goalCanvas.clear();
   ui.goalCanvas.drawPathModel(game.goal);
+  ui.conditionToolbox.update(game.levelData.conditionToolbox);
+  ui.commandToolbox.update(game.levelData.commandToolbox);
   ui.programEditor.init();
   cn.controller.reset(game, ui);
   game.log.record('loaded level ' + name);

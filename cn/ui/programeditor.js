@@ -94,6 +94,7 @@ cn.ui.ProgramEditor.prototype.registerDragDropEvents_ = function(
   this.getHandler().listen(dragGroup, EventType.DRAGSTART,
       function(e) {
         var data = e.dragSourceItem.data;
+        console.log("data", data);
         if (goog.isDefAndNotNull(data.condition)) {
           cn.controller.removeCondition(this.game_, data.f, data.i);
         } else if (goog.isDefAndNotNull(data.command)) {
@@ -129,9 +130,13 @@ cn.ui.ProgramEditor.prototype.registerDragDropEvents_ = function(
   this.getHandler().listen(dropGroup, EventType.DROP,
       function(e) {
         var source = e.dragSource;
+        console.log("source", e.dragSource);
         var element = e.dragSourceItem.element;
+        console.log("element", e.dragSourceItem.element);
         var data = e.dragSourceItem.data;
+        console.log("data", e.dragSourceItem.data);
         var ptr = e.dropTargetItem.data;
+        console.log("ptr", e.dropTargetItem.data);
 
         // Clone the command element if coming from the toolbox.
         if (source === this.ui_.conditionToolbox.getDragDropGroup()) {
@@ -152,6 +157,7 @@ cn.ui.ProgramEditor.prototype.registerDragDropEvents_ = function(
         e.dropTargetItem.element.appendChild(element);
 
         // Update the actual program model.
+        console.log(data);
         if (goog.isDefAndNotNull(data.condition)) {
           cn.controller.setCondition(this.game_, ptr.f, ptr.i, data.condition);
         } else if (goog.isDefAndNotNull(data.command)) {

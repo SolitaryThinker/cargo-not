@@ -20,6 +20,7 @@ goog.require('cn.ui.LevelSelector');
 goog.require('cn.ui.ProgramEditor');
 goog.require('goog.style');
 goog.require('goog.ui.Component');
+goog.require('goog.dom');
 
 
 
@@ -46,16 +47,16 @@ cn.ui.GameUi = function(game, opt_domHelper) {
 
   this.addChild(new cn.ui.ClassComponent(
       cn.constants.GAME_LOGO_CLASS_NAME), true);
-  this.addChild(new cn.ui.ClassContainer([],
+  this.addChild(new cn.ui.ClassContainer(cn.constants.RIGHT_PANEL_CONTAINER,
       [
         new cn.ui.ClassContainer(cn.constants.LEVEL_SELECTOR_CONTAINER,
             this.levelSelector, 'LEVELS', opt_domHelper),
         new cn.ui.ClassContainer(cn.constants.GAME_CANVAS_CONTAINER,
-            this.goalCanvas, 'GOAL', opt_domHelper)
+            this.goalCanvas, 'GOAL', opt_domHelper),
+        this.animatedCanvas,
+        this.controls
       ],
       null, opt_domHelper), true);
-  this.addChild(this.animatedCanvas, true);
-  this.addChild(this.controls, true);
   this.addChild(new cn.ui.ClassContainer(cn.constants.TOOLBOX_CONTAINER,
       new cn.ui.ClassContainer(cn.constants.FULL_TOOLBOX_CLASS_NAME,
           [

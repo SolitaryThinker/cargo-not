@@ -1,13 +1,14 @@
 .cn-controls {
   margin: 0 auto;
+  text-align: center;
 }
 
 .goog-button {
   border: none;
   padding: 0;
-  margin: 10px 15px;
-  width: 40px;
-  height: 40px;
+  margin: 10px 10px;
+  width: 30px;
+  height: 30px;
   background-color: inherit;
   background-position: center;
   background-repeat: no-repeat;
@@ -32,13 +33,13 @@
 }
 
 .goog-slider-horizontal {
-  @mixin slider-bg(350px, 20px, 'png/speed_bar.png');
+  @mixin slider-bg(325px, 15px, 'png/speed_bar.png');
   margin: 0 auto;
   position: relative;
   outline: none;
 }
 
 .goog-slider-thumb {
-  @mixin slider-bg(40px, 20px, 'png/slider.png');
+  @mixin slider-bg(40px, 15px, 'png/slider.png');
   position: absolute;
 }

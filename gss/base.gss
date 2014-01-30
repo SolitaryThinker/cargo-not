@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 10px;
@@ -20,20 +25,33 @@ div:after {
   visibility: hidden;
 }
 
+.clear {
+  clear: both;  
+}
+
 .cn-game-ui {
-  width: 750px;
+  width: 96%;
+  height: 96%;
   text-align: center;
   background-color: #eeeeee;
-  padding: 25px;
-  margin: auto;
+  padding: 1.5%;
+  margin: .5%;
+  /*margin: auto;*/
 }
 
 .cn-game-logo {
-  height: 100px;
+  height: 75px;
   background-image: url('png/logo_text.png');
-  background-size: 70%;
+  background-size: auto 100%;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.cn-right-panel-container {
+  margin-top: 15px;
+  width: 750px;
+  float: right;
+  text-align: left;
 }
 
 .cn-heading {
