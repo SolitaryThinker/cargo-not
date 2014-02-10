@@ -48,7 +48,7 @@
   width: 20px;
   height: 20px;
   border: none;
-  background-image: url('png/hint.png');
+  background-image: url('png/help.png');
   background-size: 100%;
   background-color: inherit;
 }
