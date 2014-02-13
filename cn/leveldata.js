@@ -236,7 +236,7 @@ cn.LevelData.levels = {
   ),
   'SHUFFLE SORT': new cn.LevelData(
       2,
-      [15, 10, 9],
+      [15, 12, 10],
       [8, 8, 8, 5],
       ['RIGHT', 'DOWN', 'LEFT', 'F0', 'F1', 'F2', 'F3'],
       ['F0', 'F1', 'F2', 'F3'],
@@ -260,7 +260,7 @@ cn.LevelData.levels = {
   ),
   'COLOR SORT': new cn.LevelData(
       2,
-      [14, 10, 8],
+      [14, 12, 10],
       [8, 8, 8, 5],
       ['RIGHT', 'DOWN', 'LEFT', 'F0', 'F1', 'F2', 'F3'],
       ['RED', 'GREEN', 'NONE', 'ANY'],
@@ -288,7 +288,7 @@ cn.LevelData.levels = {
   ),
   'REPEAT INVERTER': new cn.LevelData(
       1,
-      [9, 7, 5],
+      [13, 11, 9],
       [8, 8, 8, 5],
       ['RIGHT', 'DOWN', 'LEFT', 'F0', 'F1', 'F2', 'F3'],
       ['BLUE', 'RED', 'GREEN', 'YELLOW', 'NONE', 'ANY'],
@@ -317,7 +317,7 @@ cn.LevelData.levels = {
   ),
   'MIRROR': new cn.LevelData(
       1,
-      [9, 7, 6],
+      [11, 9, 7],
       [8, 8, 8, 5],
       ['RIGHT', 'DOWN', 'LEFT', 'F0', 'F1', 'F2', 'F3'],
       ['GREEN', 'YELLOW', 'NONE', 'ANY'],
@@ -356,7 +356,7 @@ cn.LevelData.levels = {
   ),
   'CLARITY': new cn.LevelData(
       1,
-      [9, 7, 6],
+      [10, 8, 7],
       [8, 8, 8, 5],
       ['RIGHT', 'DOWN', 'LEFT', 'F0', 'F1', 'F2', 'F3'],
       ['RED', 'GREEN', 'NONE', 'ANY'],
@@ -417,7 +417,7 @@ cn.LevelData.levels = {
   ),
   'FILL THE BLANKS': new cn.LevelData(
       1,
-      [20, 14, 11],
+      [21, 15, 12],
       [8, 8, 8, 5],
       ['RIGHT', 'DOWN', 'LEFT', 'F0', 'F1', 'F2', 'F3'],
       ['RED', 'GREEN', 'NONE', 'ANY'],
@@ -503,7 +503,7 @@ cn.LevelData.levels = {
   ),
   'GENETIC CODE': new cn.LevelData(
       1,
-      [29, 20, 17],
+      [29, 22, 19],
       [8, 8, 8, 5],
       ['RIGHT', 'DOWN', 'LEFT', 'F0', 'F1', 'F2', 'F3'],
       ['GREEN', 'YELLOW', 'NONE', 'ANY'],
