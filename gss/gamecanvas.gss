@@ -11,3 +11,21 @@
 .cn-game-canvas-animated {
   margin: 25px auto 0 auto;
 }
+
+.cn-hint-button {
+  width: 50px;
+  height: 50px;
+  border: none;
+  background-image: url('png/hint.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  z-index: 1;
+  position: absolute;
+  top: 35px;
+  right: 7px;  
+}
+
+.cn-hint-button:hover {
+  opacity: 0.2;
+  /* @alternate */ filter: alpha(opacity=20);
+}

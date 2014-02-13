@@ -115,7 +115,6 @@ cn.model.Program.prototype.hasNext_ = function() {
   return this.pointers_.length > 0 || !this.atEndOfFunction_();
 };
 
-
 /**
  * Updates the program pointers and returns the instruction to execute.
  * @param {!cn.model.Bot} bot The bot to check the instruction's condition
@@ -160,6 +159,26 @@ cn.model.Program.prototype.next = function(bot) {
   return instruction.command;
 };
 
+/**
+ * Updates the program pointers and returns the instruction to execute.
+ * @param {!cn.model.Bot} bot The bot to check the instruction's condition
+ *     against.
+ * @return {?cn.model.Command} The next command or null if there are no more
+ *     instructions to execute.
+ */
+cn.model.Program.prototype.getNext = function(bot) {
+
+  var old_pointers = goog.array.clone(this.pointers_)
+  var old_i = this.i_;
+  var old_f = this.f_;
+
+  var command = this.next(bot);
+  this.pointers_ = old_pointers;
+  this.i_ = old_i;
+  this.f_ = old_f;
+
+  return command;
+};
 
 /**
  * @return {number} The current function index.

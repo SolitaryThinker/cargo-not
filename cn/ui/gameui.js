@@ -16,6 +16,7 @@ goog.require('cn.ui.ConditionToolbox');
 goog.require('cn.ui.Controls');
 goog.require('cn.ui.GameCanvas');
 goog.require('cn.ui.HintButton');
+goog.require('cn.ui.HelpButton');
 goog.require('cn.ui.LevelSelector');
 goog.require('cn.ui.ProgramEditor');
 goog.require('goog.style');
@@ -42,6 +43,7 @@ cn.ui.GameUi = function(game, opt_domHelper) {
   this.conditionToolbox = new cn.ui.ConditionToolbox(opt_domHelper);
   this.commandToolbox = new cn.ui.CommandToolbox(opt_domHelper);
   this.hintButton = new cn.ui.HintButton(game, this, null, opt_domHelper);
+  this.helpButton = new cn.ui.HelpButton(game, this, null, opt_domHelper);
   this.programEditor = new cn.ui.ProgramEditor(game, this,
       this.conditionToolbox, this.commandToolbox, opt_domHelper);
 
@@ -53,6 +55,7 @@ cn.ui.GameUi = function(game, opt_domHelper) {
             this.levelSelector, 'LEVELS', opt_domHelper),
         new cn.ui.ClassContainer(cn.constants.GAME_CANVAS_CONTAINER,
             this.goalCanvas, 'GOAL', opt_domHelper),
+        this.hintButton,
         this.animatedCanvas,
         this.controls
       ],
@@ -62,7 +65,7 @@ cn.ui.GameUi = function(game, opt_domHelper) {
           [
             this.conditionToolbox,
             this.commandToolbox,
-            this.hintButton
+            this.helpButton
           ],
           null, opt_domHelper),
       'TOOLBOX', opt_domHelper), true);

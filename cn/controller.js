@@ -18,7 +18,7 @@ goog.require('goog.net.XhrIo');
  */
 cn.controller.init = function() {
   var game = new cn.model.Game();
-  //game.id = prompt('Enter your UTEID') || 'unknown';
+  // game.id = prompt('Enter your UTEID') || 'unknown';
   var ui = new cn.ui.GameUi(game);
   ui.render();
 };
@@ -37,8 +37,15 @@ cn.controller.play = function(game, ui) {
     return;
   }
   var command = game.program.next(game.bot);
+  console.log(command);
   ui.programEditor.highlightExecution();
   ui.programEditor.disableDragDrop();
+  executeCommand(command)
+  cn.controller
+  console.log(game.program.getNext(game.bot));  
+};
+
+cn.controller.executeCommand = function (command, game, ui) {
   if (goog.isDefAndNotNull(command)) {
     switch (command) {
       case cn.model.Command.LEFT:
@@ -60,8 +67,14 @@ cn.controller.play = function(game, ui) {
         throw Error('Animation not implemented for "' + command + '"');
     }
   }
-};
+}
 
+cn.controller.updateStack = function (game, ui) {
+  
+  while(game.program.hasNext()) {
+
+  }
+}
 
 /**
  * @param {!cn.ui.GameUi} ui A pointer to the UI.
@@ -278,6 +291,13 @@ cn.controller.showHint = function(game, ui) {
   alert(game.levelData.hint);
 };
 
+/**
+ * @param {!cn.model.Game} game The current game.
+ * @param {!cn.ui.GameUi} ui A pointer to the UI.
+ */
+cn.controller.showHelp = function(game, ui) {
+  alert("help should show up");
+};
 
 /**
  * @param {!cn.model.Game} game The current game.

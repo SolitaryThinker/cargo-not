@@ -43,7 +43,7 @@
 .cn-command-f2 { background-image: url('png/f2.png'); }
 .cn-command-f3 { background-image: url('png/f3.png'); }
 
-.cn-hint-button {
+.cn-help-button {
   float: right;
   width: 20px;
   height: 20px;
@@ -53,7 +53,7 @@
   background-color: inherit;
 }
 
-.cn-hint-button:hover {
+.cn-help-button:hover {
   opacity: 0.2;
   /* @alternate */ filter: alpha(opacity=20);
 }

@@ -52,6 +52,7 @@ div:after {
   width: 750px;
   float: right;
   text-align: left;
+  position: relative;
 }
 
 .cn-heading {
