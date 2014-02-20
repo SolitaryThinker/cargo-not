@@ -10,7 +10,7 @@ LIB_URL = https://code.google.com/p/closure-library/
 LIB_PATH = closure/library
 
 # Closure Compiler variables.
-CC_URL = http://closure-compiler.googlecode.com/files/compiler-latest.zip
+CC_URL = http://dl.google.com/closure-compiler/compiler-latest.zip
 CC_PATH = closure/compiler
 CC_JAR = $(CC_PATH)/compiler.jar
 

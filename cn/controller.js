@@ -40,7 +40,7 @@ cn.controller.play = function(game, ui) {
   console.log(command);
   ui.programEditor.highlightExecution();
   ui.programEditor.disableDragDrop();
-  executeCommand(command)
+  cn.controller.executeCommand(command)
   cn.controller
   console.log(game.program.getNext(game.bot));  
 };
