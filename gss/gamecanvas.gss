@@ -29,3 +29,15 @@
   opacity: 0.2;
   /* @alternate */ filter: alpha(opacity=20);
 }
+
+.cn-help-text {
+    height: 580px;
+    width: 500px;
+    background-image: url('png/toolbox_info.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    z-index: 1;
+    position: absolute;
+    top: 100px;
+    visibility: hidden;
+}

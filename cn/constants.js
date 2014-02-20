@@ -161,12 +161,14 @@ cn.constants.FULL_TOOLBOX_CLASS_NAME = goog.getCssName('cn-full-toolbox');
 /** @type {string} @const */
 cn.constants.TOOLBOX_CONTAINER = goog.getCssName('cn-toolbox-container');
 
-
 /** @type {string} @const */
 cn.constants.HINT_BUTTON_CLASS_NAME = goog.getCssName('cn-hint-button');
 
 /** @type {string} @const */
 cn.constants.HELP_BUTTON_CLASS_NAME = goog.getCssName('cn-help-button');
+
+/** @type {string} @const */
+cn.constants.HELP_TEXT_CLASS_NAME = goog.getCssName('cn-help-text');
 
 /** @type {string} @const */
 cn.constants.PROGRAM_EDITOR_CLASS_NAME = goog.getCssName('cn-program-editor');

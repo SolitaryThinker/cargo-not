@@ -296,7 +296,7 @@ cn.controller.showHint = function(game, ui) {
  * @param {!cn.ui.GameUi} ui A pointer to the UI.
  */
 cn.controller.showHelp = function(game, ui) {
-  alert("help should show up");
+  ui.toggleHelpText();
 };
 
 /**
