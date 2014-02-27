@@ -11,6 +11,7 @@ goog.require('cn.model.Game');
 goog.require('cn.ui.GameUi');
 goog.require('goog.dom');
 goog.require('goog.net.XhrIo');
+goog.require('cn.model.Instruction');
 
 
 /**
@@ -23,7 +24,7 @@ cn.controller.init = function() {
   ui.render();
 };
 
-
+var stackInitialized = false;
 /**
  * @param {!cn.model.Game} game The current game.
  * @param {!cn.ui.GameUi} ui A pointer to the UI.
@@ -36,45 +37,89 @@ cn.controller.play = function(game, ui) {
     alert('You won with ' + stars + ' stars!');
     return;
   }
-  var command = game.program.next(game.bot);
-  console.log(command);
+  // Initialize the stack
+  if(ui.programStack.isEmpty() && !stackInitialized) {
+    cn.controller.initializeStack(game, ui);
+    stackInitialized = true;
+  }
+
+  console.log("starting next...");
+  var instruction = game.program.next(game.bot);
+  console.log("instruction ", instruction);
+
   ui.programEditor.highlightExecution();
   ui.programEditor.disableDragDrop();
-  cn.controller.executeCommand(command, game, ui)
-//  cn.controller
-  console.log(game.program.getNext(game.bot));  
+  console.log("executing...");
+  if (instruction != null && instruction.command != null)
+    cn.controller.execute(instruction.command, game, ui);
+  console.log("done executing...");
 };
 
-cn.controller.executeCommand = function (command, game, ui) {
-  if (goog.isDefAndNotNull(command)) {
+cn.controller.execute = function (command, game, ui) {
+  switch (command) {
+    case cn.model.Command.LEFT:
+      cn.controller.moveLeft(game, ui);
+      break;
+    case cn.model.Command.RIGHT:
+      cn.controller.moveRight(game, ui);
+      break;
+    case cn.model.Command.DOWN:
+      cn.controller.moveDown(game, ui);
+      break;
+    case cn.model.Command.F0:
+    case cn.model.Command.F1:
+    case cn.model.Command.F2:
+    case cn.model.Command.F3:
+      cn.controller.play(game, ui);
+      break;
+    default:
+      throw Error('1Animation not implemented for "' + command + '"');
+  }
+}
+
+cn.controller.rewind = function (commands, game) {
+  for(var i = commands.length-1; i >= 0; i--) {
+    var command = commands[i].command;
     switch (command) {
-      case cn.model.Command.LEFT:
-        cn.controller.moveLeft(game, ui);
-        break;
       case cn.model.Command.RIGHT:
-        cn.controller.moveRight(game, ui);
+        game.bot.position--;
+        break;
+      case cn.model.Command.LEFT:
+        game.bot.position++;
         break;
       case cn.model.Command.DOWN:
-        cn.controller.moveDown(game, ui);
+        var stack = game.level.stacks[game.bot.position];
+        if (game.bot.hasCargo()) {
+          stack.addCargo(game.bot.detachCargo());
+        } else if (stack.size() > 0) {
+          game.bot.attachCargo(stack.liftCargo());
+        }
         break;
       case cn.model.Command.F0:
       case cn.model.Command.F1:
       case cn.model.Command.F2:
       case cn.model.Command.F3:
-        cn.controller.play(game, ui);
         break;
       default:
-        throw Error('Animation not implemented for "' + command + '"');
+        throw Error('2Animation not implemented for "' + command + '"');
     }
   }
 }
 
-/*cn.controller.updateStack = function (game, ui) {
-  
-  while(game.program.hasNext()) {
-
+cn.controller.initializeStack = function (game, ui) {
+  var stack = [];
+  var f = game.program.functions[0];
+  console.log("stack should have ", f);
+  for(var i = 0; i < f.length; i++) {
+    if(f[i].command != null) {
+      console.log("pushing ", f[i]);
+      stack.push(f[i]);
+      console.log(stack.length);
+    }
   }
-}*/
+  stack.unshift(new cn.model.Instruction());
+  ui.programStack.update(stack);
+}
 
 /**
  * @param {!cn.ui.GameUi} ui A pointer to the UI.
@@ -123,8 +168,9 @@ cn.controller.moveRight = function(game, ui) {
     // TODO(joseph): Add a cleaner error notification.
     alert('Cannot move the bot any further right.');
     return;
-  }
+  } 
   var nextStack = game.level.stacks[game.bot.position + 1];
+
   ui.animatedCanvas.attachAnimation(
       function() { return game.bot.getX() < nextStack.getX(); },
       function() { game.bot.translate(game.bot.speed, 0); },
@@ -240,6 +286,9 @@ cn.controller.reset = function(game, ui) {
   ui.controls.reset();
   ui.programEditor.unhighlightExecution();
   ui.programEditor.enableDragDrop();
+  ui.programStack.reset();
+  stackInitialized = false;
+
 };
 
 
@@ -251,6 +300,8 @@ cn.controller.clearProgram = function(game, ui) {
   game.log.record('cleared registers');
   game.program.clear();
   ui.programEditor.clear();
+  ui.programStack.reset();
+  stackInitialized = false;
 };
 
 
@@ -271,7 +322,7 @@ cn.controller.setBotSpeed = function(game, speed) {
  */
 cn.controller.loadLevel = function(game, ui, name, levelData) {
   cn.controller.sendLog(game);
-  game.loadLevel(levelData);
+  game.loadLevel(levelData, ui.programStack);
   ui.goalCanvas.clear();
   ui.goalCanvas.drawPathModel(game.goal);
   ui.conditionToolbox.update(game.levelData.conditionToolbox);
@@ -304,10 +355,10 @@ cn.controller.showHelp = function(game, ui) {
  */
 cn.controller.sendLog = function(game) {
   // Don't send meaningless logs.
-  /*if (game.log.size() > 3) {
+  if (game.log.size() > 3) {
     game.log.setId(game.id);
-    goog.net.XhrIo.send('/users/joseph/log.php', null, 'POST',
-        game.log.serialize(), {'content-type': 'application/json'});
-  }*/
+    goog.net.XhrIo.send('/Users/vshan/Documents/College/cargo-not/log.php', null, 'POST',
+      game.log.serialize(), {'content-type': 'application/json'});
+  }
   game.log.clear();
 };

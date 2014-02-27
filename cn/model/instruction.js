@@ -61,6 +61,11 @@ cn.model.Instruction.prototype.hasCommand = function() {
   return goog.isDefAndNotNull(this.command);
 };
 
+/** @return {boolean} True if the instruction has a condition. */
+cn.model.Instruction.prototype.hasCondition = function() {
+  return goog.isDefAndNotNull(this.condition);
+};
+
 
 /**
  * @param {!cn.model.Bot} bot The bot to test the condition against.

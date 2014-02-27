@@ -18,6 +18,7 @@
 
 .goog-tab {
   @mixin rounded-borders(0);
+  cursor: pointer;
 }
 
 .goog-tab-bar-horizontal .goog-tab {
@@ -39,6 +40,7 @@
 .goog-tab-bar-vertical .goog-tab {
   height: 11px;
   padding: 5px 15px;
+  cursor: pointer;
 }
 
 @defmixin bg(URL, SIZE) {

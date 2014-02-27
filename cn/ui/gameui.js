@@ -19,6 +19,7 @@ goog.require('cn.ui.HintButton');
 goog.require('cn.ui.HelpButton');
 goog.require('cn.ui.HelpText');
 goog.require('cn.ui.LevelSelector');
+goog.require('cn.ui.ProgramStack');
 goog.require('cn.ui.ProgramEditor');
 goog.require('goog.style');
 goog.require('goog.ui.Component');
@@ -46,6 +47,7 @@ cn.ui.GameUi = function(game, opt_domHelper) {
   this.hintButton = new cn.ui.HintButton(game, this, null, opt_domHelper);
   this.helpButton = new cn.ui.HelpButton(game, this, null, opt_domHelper);
   this.helpText = new cn.ui.HelpText(game, this, null, opt_domHelper);
+  this.programStack = new cn.ui.ProgramStack(opt_domHelper);
   this.programEditor = new cn.ui.ProgramEditor(game, this,
       this.conditionToolbox, this.commandToolbox, opt_domHelper);
 
@@ -58,6 +60,7 @@ cn.ui.GameUi = function(game, opt_domHelper) {
         new cn.ui.ClassContainer(cn.constants.GAME_CANVAS_CONTAINER,
             this.goalCanvas, 'GOAL', opt_domHelper),
         this.hintButton,
+        new cn.ui.ClassContainer(cn.constants.PROGRAM_STACK_CONTAINER, this.programStack, 'NEXT', opt_domHelper),
         this.animatedCanvas,
         this.controls
       ],
