@@ -40,8 +40,8 @@ cn.controller.play = function(game, ui) {
   console.log(command);
   ui.programEditor.highlightExecution();
   ui.programEditor.disableDragDrop();
-  cn.controller.executeCommand(command)
-  cn.controller
+  cn.controller.executeCommand(command, game, ui)
+//  cn.controller
   console.log(game.program.getNext(game.bot));  
 };
 
@@ -69,12 +69,12 @@ cn.controller.executeCommand = function (command, game, ui) {
   }
 }
 
-cn.controller.updateStack = function (game, ui) {
+/*cn.controller.updateStack = function (game, ui) {
   
   while(game.program.hasNext()) {
 
   }
-}
+}*/
 
 /**
  * @param {!cn.ui.GameUi} ui A pointer to the UI.
