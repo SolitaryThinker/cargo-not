@@ -82,7 +82,7 @@ cn.LevelData.mapStacks_ = function(colors) {
 
 
 cn.LevelData.requiredLevels = [
-  'CARGO 101',
+  'LEARN 2 STACK \'EM',
   'TRANSPORTER',
   'RE-CURSES',
   'GO LEFT',
@@ -104,7 +104,7 @@ cn.LevelData.requiredLevels = [
  */
 cn.LevelData.levelpacks = {
   'Tutorial': [
-    'CARGO 101',
+    'LEARN 2 STACK \'EM',
     'TRANSPORTER',
     'RE-CURSES',
     'INVERTER',
@@ -159,7 +159,7 @@ cn.LevelData.levelpacks = {
  * @const
  */
 cn.LevelData.levels = {
-  'CARGO 101': new cn.LevelData(
+  'LEARN 2 STACK \'EM': new cn.LevelData(
       1,
       [3, 3, 3],
       [8, 8, 8, 5],
