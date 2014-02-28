@@ -49,6 +49,15 @@ cn.ui.HintText.prototype.enterDocument = function() {
         goog.style.setStyle(this.getElement(), 'visibility', 'hidden');
       }
   });
+  this.getHandler().listen(goog.dom.getOwnerDocument(this.getElement()),
+    goog.events.EventType.MOUSEDOWN, function(e) {
+      var target = /** @type {Node} */ (e.target);
+      if(!goog.dom.contains(this.getElement(), target)) {
+        if (goog.style.getStyle(this.getElement(), 'visibility') == 'visible') {
+          goog.style.setStyle(this.getElement(), 'visibility', 'hidden');
+        }
+      }
+    });
 };
 
 /*
@@ -62,6 +71,16 @@ cn.ui.HintText.prototype.setHint = function(hint) {
 cn.ui.HintText.prototype.updateHint_ = function() {
     this.getElement().innerHtml = this.hint;
 }
+
+cn.ui.HintText.prototype.onDocumentMouseDown_ = function(e) {
+  var target = /** @type {Node} */ (e.target);
+  if (!goog.dom.contains(this.getElement(), target)) {
+        // Mouse click was outside popup, so hide.
+      if (goog.style.getStyle(this.getElement(), 'visibility') == 'visible') {
+        goog.style.setStyle(this.getElement(), 'visibility', 'hidden');
+      }
+  }
+};
 
 /**
  * Toggles visibility of help text
