@@ -5,13 +5,15 @@
  */
 
 goog.provide('cn.controller');
-
+goog.require('cn.constants');
 goog.require('cn.model.Command');
+goog.require('cn.model.Game');
 goog.require('cn.model.Game');
 goog.require('cn.ui.GameUi');
 goog.require('goog.dom');
 goog.require('goog.net.XhrIo');
 goog.require('cn.model.Instruction');
+goog.require('cn.LevelData.requiredLevels');
 
 
 /**
@@ -33,6 +35,11 @@ cn.controller.play = function(game, ui) {
   if (game.level.equals(game.goal)) {
     // TODO(joseph): Handle winning differently.
     var stars = game.getStars();
+    console.log(game.levelName);
+    if(cn.LevelData.requiredLevels.indexOf(game.levelName) != -1){
+      console.log("is a required level");
+      goog.dom.classes.add(goog.dom.getElementByClass("cn_-required_.goog_-tab_-selected_"), cn.constants.COMPLETED_LEVEL_CLASS_NAME);
+    }
     game.log.record('won ' + stars + ' stars');
     alert('You won with ' + stars + ' stars!');
     return;
@@ -322,7 +329,7 @@ cn.controller.setBotSpeed = function(game, speed) {
  */
 cn.controller.loadLevel = function(game, ui, name, levelData) {
   cn.controller.sendLog(game);
-  game.loadLevel(levelData, ui.programStack);
+  game.loadLevel(levelData, name, ui.programStack);
   ui.goalCanvas.clear();
   ui.goalCanvas.drawPathModel(game.goal);
   ui.conditionToolbox.update(game.levelData.conditionToolbox);

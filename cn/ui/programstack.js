@@ -35,7 +35,7 @@ cn.ui.ProgramStack.prototype.enterDocument = function() {
 };
 
 /**
- * @param {Array.string} instructions instructions to update the stack visualization with.
+ * @param {Array} instructions instructions to update the stack visualization with.
  */
 cn.ui.ProgramStack.prototype.update = function(instructions) {
   this.removeChildren(true);

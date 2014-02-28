@@ -174,7 +174,7 @@ cn.model.Program.prototype.next = function(bot) {
 
 /**
  * Returns the current state of the program.
- * @return {Array.Object} The next command or null if there are no more
+ * @return {Array} The next command or null if there are no more
  *     instructions to execute.
  */
 cn.model.Program.prototype.startTransaction = function() {
@@ -187,7 +187,7 @@ cn.model.Program.prototype.startTransaction = function() {
 
 /**
  * Sets the program state to the state given.
- * @param {Array.Object} state The original state.
+ * @param {Array} state The original state.
  */
 cn.model.Program.prototype.rollback = function(state) {
   this.pointers_ = state[0];

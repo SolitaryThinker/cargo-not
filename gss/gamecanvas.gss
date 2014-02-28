@@ -43,7 +43,7 @@
     top: 100px;
     visibility: hidden;
     border: none;
-    background-color: none;
+    background-color: transparent;
 }
 
 .cn-program-stack {

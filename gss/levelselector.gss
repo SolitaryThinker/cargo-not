@@ -62,6 +62,14 @@
   background-color: #ffffff;
 }
 
+.cn-required {
+  color: #F27575;
+}
+
+.cn-completed {
+  color: #b2ede2;
+}
+
 .goog-tab-bar-vertical .goog-tab-selected {
   background-color: #6ec9c8;
 }
