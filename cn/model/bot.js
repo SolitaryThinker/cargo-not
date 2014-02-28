@@ -124,7 +124,6 @@ cn.model.Bot.prototype.forEachSubModel = function(f, opt_obj) {
   }
 };
 
-
 /**
  * @inheritDoc
  */

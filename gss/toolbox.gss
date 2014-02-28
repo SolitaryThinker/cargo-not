@@ -25,6 +25,7 @@
   height: HEIGHT;
   background-size: 100%;
   display: inline-block;
+  cursor: pointer;
 }
 .cn-condition { @mixin condition-command(20px); }
 .cn-condition-none { background-image: url('png/none.png'); }
@@ -51,6 +52,7 @@
   background-image: url('png/help.png');
   background-size: 100%;
   background-color: inherit;
+  cursor: pointer;
 }
 
 .cn-help-button:hover {

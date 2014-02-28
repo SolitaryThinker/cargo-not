@@ -120,6 +120,12 @@ cn.constants.CONDITION_CLASS_NAME = goog.getCssName('cn-condition');
 /** @type {string} @const */
 cn.constants.COMMAND_CLASS_NAME = goog.getCssName('cn-command');
 
+/** @type {string} @const */
+cn.constants.REQUIRED_LEVEL_CLASS_NAME = goog.getCssName('cn-required');
+
+/** @type {string} @const */
+cn.constants.COMPLETED_LEVEL_CLASS_NAME = goog.getCssName('cn-completed');
+
 
 /**
  * Enum of CSS class names for all possible program commands.
@@ -146,7 +152,8 @@ cn.constants.CONDITION_CLASS_NAMES = {
   'RED': goog.getCssName('cn-condition-red'),
   'GREEN': goog.getCssName('cn-condition-green'),
   'BLUE': goog.getCssName('cn-condition-blue'),
-  'YELLOW': goog.getCssName('cn-condition-yellow')
+  'YELLOW': goog.getCssName('cn-condition-yellow'),
+  'NULL' : goog.getCssName('cn-condition-null')
 };
 
 
@@ -162,6 +169,9 @@ cn.constants.FULL_TOOLBOX_CLASS_NAME = goog.getCssName('cn-full-toolbox');
 cn.constants.TOOLBOX_CONTAINER = goog.getCssName('cn-toolbox-container');
 
 /** @type {string} @const */
+cn.constants.PROGRAM_STACK_CONTAINER = goog.getCssName('cn-program-stack-container');
+
+/** @type {string} @const */
 cn.constants.HINT_BUTTON_CLASS_NAME = goog.getCssName('cn-hint-button');
 
 /** @type {string} @const */
@@ -173,6 +183,11 @@ cn.constants.HELP_TEXT_CLASS_NAME = goog.getCssName('cn-help-text');
 /** @type {string} @const */
 cn.constants.PROGRAM_EDITOR_CLASS_NAME = goog.getCssName('cn-program-editor');
 
+/** @type {string} @const */
+cn.constants.PROGRAM_STACK_CLASS_NAME = goog.getCssName('cn-program-stack');
+
+/** @type {string} @const */
+cn.constants.PROGRAM_STACK_INSTRUCTION_CLASS_NAME = goog.getCssName('cn-program-stack-instruction');
 
 /** @type {string} @const */
 cn.constants.FUNCTION_EDITOR_CLASS_NAME = goog.getCssName('cn-function-editor');

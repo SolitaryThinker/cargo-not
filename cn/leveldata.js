@@ -8,11 +8,11 @@
 
 goog.provide('cn.LevelData');
 goog.provide('cn.LevelData.levelpacks');
+goog.provide('cn.LevelData.requiredLevels');
 goog.provide('cn.LevelData.levels');
 
 goog.require('cn.model.CargoColor');
 goog.require('goog.array');
-
 
 
 /**
@@ -80,6 +80,23 @@ cn.LevelData.mapStacks_ = function(colors) {
       });
 };
 
+
+cn.LevelData.requiredLevels = [
+  'CARGO 101',
+  'TRANSPORTER',
+  'RE-CURSES',
+  'GO LEFT',
+  'GO LEFT 2',
+  'THE STACKER',
+  'CLARITY',
+  'COME TOGETHER',
+  'UP THE GREENS'
+]
+
+// cn.LevelData.bonusLevels = [
+//   'COME TOGETHER 2',
+//   'UP THE GREENS'
+// ]
 
 /**
  * @type {Object.<string, !Array.<string>>}

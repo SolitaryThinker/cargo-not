@@ -4,6 +4,7 @@
 }
 
 .goog-button {
+  cursor: pointer;
   border: none;
   padding: 0;
   margin: 10px 10px;
@@ -37,6 +38,7 @@
   margin: 0 auto;
   position: relative;
   outline: none;
+  cursor: pointer;
 }
 
 .goog-slider-thumb {

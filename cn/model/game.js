@@ -62,6 +62,10 @@ cn.model.Game.prototype.goal;
 cn.model.Game.prototype.levelData;
 
 
+/** @type {string} */
+cn.model.Game.prototype.levelName;
+
+
 /** @type {!cn.model.Program} */
 cn.model.Game.prototype.program;
 
@@ -110,11 +114,12 @@ cn.model.Game.prototype.reset = function() {
 /**
  * @param {!cn.LevelData} levelData The level to load.
  */
-cn.model.Game.prototype.loadLevel = function(levelData) {
+cn.model.Game.prototype.loadLevel = function(levelData, name, pstack) {
   this.levelData = levelData;
   this.level = new cn.model.Level(levelData.initial);
   this.goal = new cn.model.Level(levelData.goal);
-  this.program.init(levelData.functions);
+  this.program.init(levelData.functions, pstack);
+  this.levelName = name;
 
   // Setup and scale the goal 'view'. This should only happen once per level
   // loading, so it's not called in the reset method.

@@ -7,6 +7,7 @@
 goog.provide('cn.ui.LevelSelector');
 
 goog.require('cn.LevelData.levelpacks');
+goog.require('cn.LevelData.requiredLevels');
 goog.require('cn.LevelData.levels');
 goog.require('cn.constants');
 goog.require('cn.model.Game');
@@ -46,7 +47,10 @@ cn.ui.LevelSelector = function(game, ui, opt_domHelper) {
     var levelTabBar = new goog.ui.TabBar(
         goog.ui.TabBar.Location.START, null, opt_domHelper);
     goog.array.forEach(levels, function(level) {
-      levelTabBar.addChild(new goog.ui.Tab(level), true);
+      var tab = new goog.ui.Tab(level);
+      if(cn.LevelData.requiredLevels.indexOf(level) != -1)
+        tab.addClassName(cn.constants.REQUIRED_LEVEL_CLASS_NAME);
+      levelTabBar.addChild(tab, true);
     });
     levelTabBar.setVisible(false);
     this.levelTabBars_.push(levelTabBar);

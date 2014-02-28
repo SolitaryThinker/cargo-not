@@ -10,6 +10,7 @@ goog.require('cn.model.Command');
 goog.require('cn.model.Condition');
 goog.require('cn.model.Instruction');
 goog.require('cn.model.Resettable');
+goog.require('cn.ui.ProgramStack');
 goog.require('goog.array');
 
 
@@ -23,7 +24,7 @@ cn.model.Pointer;
  * @implements {cn.model.Resettable}
  */
 cn.model.Program = function() {
-  this.init([1]);
+  this.init([1], null);
 };
 
 
@@ -58,7 +59,7 @@ cn.model.Program.prototype.pointers_;
  * Initialize the program with the given instruction lengths.
  * @param {Array.<number>} lengths Lengths for each function.
  */
-cn.model.Program.prototype.init = function(lengths) {
+cn.model.Program.prototype.init = function(lengths, pstack) {
   this.f_ = 0;
   this.i_ = 0;
   this.pointers_ = [];
@@ -69,6 +70,7 @@ cn.model.Program.prototype.init = function(lengths) {
         this.functions.push(this.createFunction_(length));
       },
       this);
+  this.programStack = pstack;
 };
 
 
@@ -119,10 +121,11 @@ cn.model.Program.prototype.hasNext_ = function() {
  * Updates the program pointers and returns the instruction to execute.
  * @param {!cn.model.Bot} bot The bot to check the instruction's condition
  *     against.
- * @return {?cn.model.Command} The next command or null if there are no more
+ * @return {?cn.model.Instruction} The next instruction or null if there are no more
  *     instructions to execute.
  */
 cn.model.Program.prototype.next = function(bot) {
+  console.log("progstack ", this.programStack.getInstructions());
   if (!this.hasNext_()) {
     this.i_++;
     return null;
@@ -132,6 +135,7 @@ cn.model.Program.prototype.next = function(bot) {
   // calling this function.
   if (this.atEndOfFunction_()) {
     var pointer = this.pointers_.pop();
+    console.log("popped ", this.functions[pointer.f][pointer.i]);
     this.f_ = pointer.f;
     this.i_ = pointer.i;
     return this.next(bot);
@@ -142,6 +146,8 @@ cn.model.Program.prototype.next = function(bot) {
   // Skip this instruction if its condition fails.
   if (!instruction.passesCondition(bot)) {
     this.i_++;
+    // Pop off function call
+    this.programStack.pop(true);
     return this.next(bot);
   }
 
@@ -149,35 +155,44 @@ cn.model.Program.prototype.next = function(bot) {
   // call instruction.
   if (instruction.isFunctionCall()) {
     this.pointers_.push({f: this.f_, i: this.i_ + 1});
+    console.log("pushed ", this.functions[this.f_][this.i_ + 1]);
     this.f_ = instruction.getFunctionCall();
     this.i_ = 0;
-    return instruction.command;
+    // Pop off function call
+    // this.programStack.pop();
+    this.programStack.pop(true);
+    // Push on the next function
+    this.programStack.pushFunction(this.functions[this.f_]);
+    return instruction;
   }
 
   // Simplest case. Just move to the next instruction.
   this.i_++;
-  return instruction.command;
+  this.programStack.pop(false);
+  return instruction;
 };
 
 /**
- * Updates the program pointers and returns the instruction to execute.
- * @param {!cn.model.Bot} bot The bot to check the instruction's condition
- *     against.
- * @return {?cn.model.Command} The next command or null if there are no more
+ * Returns the current state of the program.
+ * @return {Array} The next command or null if there are no more
  *     instructions to execute.
  */
-cn.model.Program.prototype.getNext = function(bot) {
+cn.model.Program.prototype.startTransaction = function() {
+  var pointers = goog.array.clone(this.pointers_)
+  var i = this.i_;
+  var f = this.f_;
+  return [pointers, i, f];
+};
 
-  var old_pointers = goog.array.clone(this.pointers_)
-  var old_i = this.i_;
-  var old_f = this.f_;
 
-  var command = this.next(bot);
-  this.pointers_ = old_pointers;
-  this.i_ = old_i;
-  this.f_ = old_f;
-
-  return command;
+/**
+ * Sets the program state to the state given.
+ * @param {Array} state The original state.
+ */
+cn.model.Program.prototype.rollback = function(state) {
+  this.pointers_ = state[0];
+  this.i_ = state[1];
+  this.f_ = state[2];
 };
 
 /**
