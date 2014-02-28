@@ -346,7 +346,8 @@ cn.controller.loadLevel = function(game, ui, name, levelData) {
  */
 cn.controller.showHint = function(game, ui) {
   // TODO(joseph): Use a better UI for alerts.
-  alert(game.levelData.hint);
+  //alert(game.levelData.hint);
+  ui.toggleHintText(game.levelData.hint);
 };
 
 /**

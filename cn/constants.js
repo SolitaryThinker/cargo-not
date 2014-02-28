@@ -181,6 +181,9 @@ cn.constants.HELP_BUTTON_CLASS_NAME = goog.getCssName('cn-help-button');
 cn.constants.HELP_TEXT_CLASS_NAME = goog.getCssName('cn-help-text');
 
 /** @type {string} @const */
+cn.constants.HINT_TEXT_CLASS_NAME = goog.getCssName('cn-hint-text');
+
+/** @type {string} @const */
 cn.constants.PROGRAM_EDITOR_CLASS_NAME = goog.getCssName('cn-program-editor');
 
 /** @type {string} @const */

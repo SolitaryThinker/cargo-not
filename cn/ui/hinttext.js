@@ -4,7 +4,7 @@
  * @author elynnlee@cs.utexas.edu (Elynn Lee)
  */
 
-goog.provide('cn.ui.HelpText');
+goog.provide('cn.ui.HintText');
 
 goog.require('cn.constants');
 goog.require('goog.dom.classes');
@@ -18,37 +18,30 @@ goog.require('goog.ui.NativeButtonRenderer');
 /**
  * @param {!cn.model.Game} game The game model to render.
  * @param {!cn.ui.GameUi} ui A pointer to parent game UI.
- * @param {!string} className class name for picture
- * @param {string=} opt_toolTip optional tool tip
  * @param {goog.ui.ButtonRenderer=} opt_renderer Renderer used to render or
  *     decorate the button.
  * @param {goog.dom.DomHelper=} opt_domHelper Optional DOM helper.
  * @constructor
  * @extends {goog.ui.Button}
  */
-cn.ui.HelpText = function(game, ui, className, opt_toolTip, opt_renderer, opt_domHelper) {
+cn.ui.HintText = function(game, ui, opt_renderer, opt_domHelper) {
   goog.base(this, null,
       opt_renderer,
       opt_domHelper);
   this.game_ = game;
   this.ui_ = ui;
-  this.className_ = className;
-  if (goog.string.isEmpty(opt_toolTip)) {
-      this.setTooltip(opt_toolTip);
-  } else {
-      this.setTooltip('');
-  }
+  this.hint = '';
 };
-goog.inherits(cn.ui.HelpText, goog.ui.Button);
+goog.inherits(cn.ui.HintText, goog.ui.Button);
 
 
 /**
  * @inheritDoc
  */
-cn.ui.HelpText.prototype.enterDocument = function() {
+cn.ui.HintText.prototype.enterDocument = function() {
   goog.base(this, 'enterDocument');
   goog.dom.classes.set(
-      this.getElement(), this.className_);
+      this.getElement(), cn.constants.HINT_TEXT_CLASS_NAME);
 
   var EventType = goog.ui.Component.EventType;
   this.getHandler().listen(this, EventType.ACTION, function() {
@@ -58,17 +51,29 @@ cn.ui.HelpText.prototype.enterDocument = function() {
   });
 };
 
+/*
+ * @param {!string} hint Hint text
+ */
+cn.ui.HintText.prototype.setHint = function(hint) {
+  this.hint = hint;
+  this.updateHint_();
+}
+
+cn.ui.HintText.prototype.updateHint_ = function() {
+    this.getElement().innerHtml = this.hint;
+}
+
 /**
  * Toggles visibility of help text
  */
-cn.ui.HelpText.prototype.toggleVisibility = function() {
+cn.ui.HintText.prototype.toggleVisibility = function() {
   goog.style.setStyle(this.getElement(), 'visibility', 'visible');
 };
 
 
 /** @type {!cn.model.Game} @private */
-cn.ui.HelpText.prototype.game_;
+cn.ui.HintText.prototype.game_;
 
 
 /** @type {!cn.ui.GameUi} @private */
-cn.ui.HelpText.prototype.ui_;
+cn.ui.HintText.prototype.ui_;
