@@ -89,13 +89,14 @@ cn.LevelData.requiredLevels = [
   'GO LEFT 2',
   'THE STACKER',
   'CLARITY',
-  'COME TOGETHER'
-]
-
-cn.LevelData.bonusLevels = [
-  'COME TOGETHER 2',
+  'COME TOGETHER',
   'UP THE GREENS'
 ]
+
+// cn.LevelData.bonusLevels = [
+//   'COME TOGETHER 2',
+//   'UP THE GREENS'
+// ]
 
 /**
  * @type {Object.<string, !Array.<string>>}

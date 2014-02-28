@@ -41,6 +41,10 @@ div:after {
 
 .cn-game-logo {
   height: 75px;
+  width: 500px;
+  float: left;
+  margin-top: 60px;
+  margin-left: 50px;
   background-image: url('png/logo_text.png');
   background-size: auto 100%;
   background-position: center;
@@ -49,6 +53,7 @@ div:after {
 
 .cn-right-panel-container {
   margin-top: 15px;
+  margin-right: 40px;
   width: 750px;
   float: right;
   text-align: left;
