@@ -74,8 +74,11 @@ cn.model.Game.prototype.program;
 cn.model.Game.prototype.log;
 
 
-/** @type {string} */
+/** @type {int} */
 cn.model.Game.prototype.id;
+
+/** @type {string} */
+cn.model.Game.prototype.ut_eid;
 
 
 /**

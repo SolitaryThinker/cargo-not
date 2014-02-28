@@ -31,6 +31,15 @@ cn.controller.init = function() {
     }, 'POST', '{"user": { "ut_eid": "'+game.id+'"}}', {'content-type': 'application/json'});
 
   var ui = new cn.ui.GameUi(game);
+  var hash = {
+    "user": {
+      "ut_eid": game.ut_eid 
+    }
+  }
+
+  goog.net.XhrIo.send('http://stackem.herokuapp.com/api/v1/users/1', null, 'PATCH',
+    JSON.stringify(hash), {'content-type': 'application/json'});
+  
   ui.render();
 };
 
