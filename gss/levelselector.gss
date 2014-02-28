@@ -63,11 +63,11 @@
 }
 
 .cn-required {
-  color: #F27575;
+  color: #E78A88;
 }
 
 .cn-completed {
-  color: #b2ede2;
+  color: #C3EF95;
 }
 
 .goog-tab-bar-vertical .goog-tab-selected {
