@@ -18,7 +18,6 @@ goog.require('cn.ui.GameCanvas');
 goog.require('cn.ui.HintButton');
 goog.require('cn.ui.HelpButton');
 goog.require('cn.ui.HelpText');
-goog.require('cn.ui.HintText');
 goog.require('cn.ui.LevelSelector');
 goog.require('cn.ui.ProgramStack');
 goog.require('cn.ui.ProgramEditor');
@@ -46,7 +45,7 @@ cn.ui.GameUi = function(game, opt_domHelper) {
   this.conditionToolbox = new cn.ui.ConditionToolbox(opt_domHelper);
   this.commandToolbox = new cn.ui.CommandToolbox(opt_domHelper);
   this.hintButton = new cn.ui.HintButton(game, this, null, opt_domHelper);
-  this.hintText = new cn.ui.HintText(game, this, null, opt_domHelper);
+  this.hintText = new cn.ui.HelpText(game, this, cn.constants.HINT_TEXT_CLASS_NAME, null, null, opt_domHelper);
   this.helpButton = new cn.ui.HelpButton(game, this, null, opt_domHelper);
   this.helpText = new cn.ui.HelpText(game, this, cn.constants.HELP_TEXT_CLASS_NAME, "Show Help",  null, opt_domHelper);
   this.programStack = new cn.ui.ProgramStack(opt_domHelper);
@@ -106,7 +105,6 @@ cn.ui.GameUi.prototype.toggleHelpText = function() {
  */
 cn.ui.GameUi.prototype.toggleHintText = function(levelData) {
     goog.dom.getElementByClass(cn.constants.HINT_TEXT_CLASS_NAME).innerHTML = levelData;
-//    this.hintText.setHint(levelData);
     this.hintText.toggleVisibility();
 };
 
