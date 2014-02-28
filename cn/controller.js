@@ -21,7 +21,15 @@ goog.require('cn.LevelData.requiredLevels');
  */
 cn.controller.init = function() {
   var game = new cn.model.Game();
-  // game.id = prompt('Enter your UTEID') || 'unknown';
+  game.id = prompt('Enter your UTEID') || 'unknown';
+  console.log("start");
+  goog.net.XhrIo.send('http://stackem.herokuapp.com/api/v1/users/', function(e) {
+      console.log(e.target.getResponseJson());
+      console.log(e.target.getResponseJson()['id']);
+      game.id = e.target.getResponseJson()['id'];
+      console.log(game.id);
+    }, 'POST', '{"user": { "ut_eid": "'+game.id+'"}}', {'content-type': 'application/json'});
+
   var ui = new cn.ui.GameUi(game);
   ui.render();
 };
@@ -41,6 +49,10 @@ cn.controller.play = function(game, ui) {
       goog.dom.classes.add(goog.dom.getElementByClass("cn_-required_.goog_-tab_-selected_"), cn.constants.COMPLETED_LEVEL_CLASS_NAME);
     }
     game.log.record('won ' + stars + ' stars');
+    var xhr = new XMLHttpRequest();
+    xhr.open('PATCH', 'http://stackem.herokuapp.com/api/v1/users/'+game.id, true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.send('{ "user": { "completed_problems": "'+game.levelName+'"}}');
     alert('You won with ' + stars + ' stars!');
     return;
   }
@@ -364,9 +376,11 @@ cn.controller.showHelp = function(game, ui) {
 cn.controller.sendLog = function(game) {
   // Don't send meaningless logs.
   if (game.log.size() > 3) {
-    game.log.setId(game.id);
-    goog.net.XhrIo.send('/Users/vshan/Documents/College/cargo-not/log.php', null, 'POST',
-      game.log.serialize(), {'content-type': 'application/json'});
+    var xhr = new XMLHttpRequest();
+    console.log(game.id);
+    xhr.open('PATCH', 'http://stackem.herokuapp.com/api/v1/users/'+game.id, true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.send('{ "user": { "log": '+game.log.serialize()+'}}');
   }
   game.log.clear();
 };

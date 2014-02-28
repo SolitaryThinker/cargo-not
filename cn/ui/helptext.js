@@ -19,7 +19,7 @@ goog.require('goog.ui.NativeButtonRenderer');
  * @param {!cn.model.Game} game The game model to render.
  * @param {!cn.ui.GameUi} ui A pointer to parent game UI.
  * @param {!string} className class name for picture
- * @param {string=} opt_toolTip optional tool tip
+ * @param {!string} opt_toolTip optional tool tip
  * @param {goog.ui.ButtonRenderer=} opt_renderer Renderer used to render or
  *     decorate the button.
  * @param {goog.dom.DomHelper=} opt_domHelper Optional DOM helper.
