@@ -1,14 +1,20 @@
 .cn-game-canvas-container {
   display: inline-block;
   vertical-align: top;
-  width: 325px;
+  width: 51%;
 }
 
 .cn-game-canvas {
+  width: 100% !important;
+  background-color: #ffffff;
+}
+
+.cn-game-canvas canvas {
   background-color: #ffffff;
 }
 
 .cn-game-canvas-animated {
+  width: 100% !important;
   margin: 5px auto 0 auto;
 }
 
@@ -22,7 +28,7 @@
   z-index: 1;
   position: absolute;
   top: 35px;
-  right: 7px;  
+  right: 12px;  
   background-color: white;
   cursor: pointer;
 }
@@ -69,7 +75,9 @@
   padding-top: 4px;
   padding-left: 6px;
   background-image: url(png/stack_bg.png);
-  background-size: 100%;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  overflow-y: hidden;
 }
 
 .cn-program-stack-container .cn-heading {
@@ -101,4 +109,16 @@
   height: 15px;
   background-size: 100% auto;
 
+}
+
+@media only screen and (max-width: 1275px) {
+  .cn-right-panel-container {
+    width: 750px;
+    float: none;
+    margin: 0 auto;
+  }
+
+  .cn-hint-button {
+    right: 14px;
+  }
 }

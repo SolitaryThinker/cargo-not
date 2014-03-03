@@ -41,10 +41,10 @@ div:after {
 
 .cn-game-logo {
   height: 75px;
-  width: 500px;
+  width: 24%;
   float: left;
   margin-top: 60px;
-  margin-left: 50px;
+  margin-left: 9%;
   background-image: url('png/logo_text.png');
   background-size: auto 100%;
   background-position: center;
@@ -54,7 +54,7 @@ div:after {
 .cn-right-panel-container {
   margin-top: 15px;
   margin-right: 40px;
-  width: 750px;
+  width: 54.5%;
   float: right;
   text-align: left;
   position: relative;
@@ -65,4 +65,22 @@ div:after {
   font-weight: bolder;
   margin-bottom: 3px;
   outline: none;
+}
+
+
+@media only screen and (max-width: 1275px) {
+  .cn-right-panel-container {
+    width: 750px;
+    float: none;
+    margin: 0 auto;
+  }
+
+  .cn-game-logo {
+    height: 75px;
+    width: 500px;
+    margin: 0 auto;
+    background-size: auto 100%;
+    float: none;
+  }
+
 }

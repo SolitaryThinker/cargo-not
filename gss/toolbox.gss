@@ -59,3 +59,15 @@
   opacity: 0.2;
   /* @alternate */ filter: alpha(opacity=20);
 }
+
+
+@media only screen and (max-width: 1275px) {
+  .cn-toolbox-container {
+    display: block;
+    width: 470px;
+    margin: 20px auto;
+  }
+
+
+
+}

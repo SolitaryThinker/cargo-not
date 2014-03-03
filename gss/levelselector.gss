@@ -1,7 +1,7 @@
 .cn-level-selector-container {
   display: inline-block;
   vertical-align: top;
-  width: 350px;
+  width: 45%;
   margin-right: 25px;
 }
 
@@ -24,7 +24,7 @@
 .goog-tab-bar-horizontal .goog-tab {
   position: relative;
   float: left;
-  width: 50px;
+  width: 16%;
   height: 20px;
   padding: 5px 0;
   background-position: center;
