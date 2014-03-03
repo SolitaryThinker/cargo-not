@@ -141,6 +141,17 @@ cn.constants.COMMAND_CLASS_NAMES = {
   'F3': goog.getCssName('cn-command-f3')
 };
 
+cn.constants.REQUIRED_LEVEL_CLASS_NAMES = {
+  'LEARN 2 STACK \'EM': goog.getCssName('cn-level-learn-2-stack-em'),
+  'TRANSPORTER': goog.getCssName('cn-level-transporter'),
+  'RE-CURSES': goog.getCssName('cn-level-re-curses'),
+  'GO LEFT': goog.getCssName('cn-level-go-left'),
+  'GO LEFT 2': goog.getCssName('cn-level-go-left-2'),
+  'THE STACKER': goog.getCssName('cn-level-the-stacker'),
+  'CLARITY': goog.getCssName('cn-level-clarity'),
+  'COME TOGETHER': goog.getCssName('cn-level-come-together'),
+  'UP THE GREENS': goog.getCssName('cn-level-up-the-greens')
+}
 
 /**
  * Enum of CSS class names for all possible program conditionals.

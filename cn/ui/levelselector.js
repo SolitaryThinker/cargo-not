@@ -48,6 +48,7 @@ cn.ui.LevelSelector = function(game, ui, opt_domHelper) {
         goog.ui.TabBar.Location.START, null, opt_domHelper);
     goog.array.forEach(levels, function(level) {
       var tab = new goog.ui.Tab(level);
+      tab.addClassName(cn.constants.REQUIRED_LEVEL_CLASS_NAMES[level]);
       if(cn.LevelData.requiredLevels.indexOf(level) != -1)
         tab.addClassName(cn.constants.REQUIRED_LEVEL_CLASS_NAME);
       levelTabBar.addChild(tab, true);

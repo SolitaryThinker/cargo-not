@@ -15,35 +15,40 @@ goog.require('goog.net.XhrIo');
 goog.require('cn.model.Instruction');
 goog.require('cn.LevelData.requiredLevels');
 
-
+var response;
 /**
  * Initializes everything and renders the DOM.
  */
 cn.controller.init = function() {
   var game = new cn.model.Game();
   game.id = prompt('Enter your UTEID') || 'unknown';
+  var completed = [];
   console.log("start");
   goog.net.XhrIo.send('http://stackem.herokuapp.com/api/v1/users/', function(e) {
+      response = e.target.getResponseJson();
       console.log(e.target.getResponseJson());
       console.log(e.target.getResponseJson()['id']);
       game.id = e.target.getResponseJson()['id'];
+      completed = e.target.getResponseJson()['completed_problems'];
       console.log(game.id);
+      console.log(completed);
+      goog.array.forEach(completed, function(c) {
+        console.log(c);
+        if(cn.LevelData.requiredLevels.indexOf(c) != -1){
+          var tab = goog.dom.getElementByClass(cn.constants.REQUIRED_LEVEL_CLASS_NAMES[c]);
+          goog.dom.classes.add(tab, cn.constants.COMPLETED_LEVEL_CLASS_NAME);
+        }
+      });
     }, 'POST', '{"user": { "ut_eid": "'+game.id+'"}}', {'content-type': 'application/json'});
 
   var ui = new cn.ui.GameUi(game);
-  var hash = {
-    "user": {
-      "ut_eid": game.ut_eid 
-    }
-  }
 
-  goog.net.XhrIo.send('http://stackem.herokuapp.com/api/v1/users/1', null, 'PATCH',
-    JSON.stringify(hash), {'content-type': 'application/json'});
-  
   ui.render();
 };
 
 var stackInitialized = false;
+var last = [];
+
 /**
  * @param {!cn.model.Game} game The current game.
  * @param {!cn.ui.GameUi} ui A pointer to the UI.
@@ -54,7 +59,6 @@ cn.controller.play = function(game, ui) {
     var stars = game.getStars();
     console.log(game.levelName);
     if(cn.LevelData.requiredLevels.indexOf(game.levelName) != -1){
-      console.log("is a required level");
       goog.dom.classes.add(goog.dom.getElementByClass("cn_-required_.goog_-tab_-selected_"), cn.constants.COMPLETED_LEVEL_CLASS_NAME);
     }
     game.log.record('won ' + stars + ' stars');
@@ -69,18 +73,25 @@ cn.controller.play = function(game, ui) {
   if(ui.programStack.isEmpty() && !stackInitialized) {
     cn.controller.initializeStack(game, ui);
     stackInitialized = true;
+    last = [];
   }
 
-  console.log("starting next...");
   var instruction = game.program.next(game.bot);
-  console.log("instruction ", instruction);
+  last.push(instruction.command);
+  console.log(last[last.length-1]);
+  console.log(instruction.command);
+
 
   ui.programEditor.highlightExecution();
   ui.programEditor.disableDragDrop();
-  console.log("executing...");
   if (instruction != null && instruction.command != null)
+    if(instruction.isFunctionCall() && last.length > 2) {
+      if(last[last.length-1] == instruction.command && last[last.length-2] == instruction.command){
+        alert("Infinite loop detected with no commands.");
+        return;
+      }
+    }
     cn.controller.execute(instruction.command, game, ui);
-  console.log("done executing...");
 };
 
 cn.controller.execute = function (command, game, ui) {
@@ -137,10 +148,8 @@ cn.controller.rewind = function (commands, game) {
 cn.controller.initializeStack = function (game, ui) {
   var stack = [];
   var f = game.program.functions[0];
-  console.log("stack should have ", f);
   for(var i = 0; i < f.length; i++) {
     if(f[i].command != null) {
-      console.log("pushing ", f[i]);
       stack.push(f[i]);
       console.log(stack.length);
     }
@@ -316,6 +325,7 @@ cn.controller.reset = function(game, ui) {
   ui.programEditor.enableDragDrop();
   ui.programStack.reset();
   stackInitialized = false;
+  last = [];
 
 };
 
@@ -330,6 +340,7 @@ cn.controller.clearProgram = function(game, ui) {
   ui.programEditor.clear();
   ui.programStack.reset();
   stackInitialized = false;
+  last = [];
 };
 
 
