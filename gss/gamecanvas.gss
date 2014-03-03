@@ -47,8 +47,8 @@
 }
 
 .cn-hint-text {
-    height: 100px;
     width: 200px;
+    padding: 7px;
     background-color: 6ec9c9;
     background-size: 100%;
     background-repeat: no-repeat;
