@@ -45,7 +45,8 @@ div:after {
   float: left;
   margin-top: 60px;
   margin-left: 9%;
-  background-image: url('png/logo_text.png');
+  // substitute logo_text_cb with logo_text to get stackem logo
+  background-image: url('png/logo_text_cb.png');
   background-size: auto 100%;
   background-position: center;
   background-repeat: no-repeat;
