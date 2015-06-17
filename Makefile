@@ -6,7 +6,7 @@ JS_MAP_OUTPUT = cargo-not-map.js
 INDEX_OUTPUT = index.html
 
 # Closure Library variables.
-LIB_URL = https://code.google.com/p/closure-library/
+LIB_URL = https://github.com/google/closure-library.git
 LIB_PATH = closure/library
 
 # Closure Compiler variables.
