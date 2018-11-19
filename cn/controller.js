@@ -77,14 +77,15 @@ cn.controller.play = function(game, ui) {
   }
 
   var instruction = game.program.next(game.bot);
-  last.push(instruction.command);
-  console.log(last[last.length-1]);
-  console.log(instruction.command);
 
 
   ui.programEditor.highlightExecution();
   ui.programEditor.disableDragDrop();
-  if (instruction != null && instruction.command != null)
+  if (instruction != null && instruction.command != null) {
+    last.push(instruction.command);
+    console.log(last[last.length-1]);
+    console.log(instruction.command);
+
     if(instruction.isFunctionCall() && last.length > 2) {
       if(last[last.length-1] == instruction.command && last[last.length-2] == instruction.command){
         alert("Infinite loop detected with no commands.");
@@ -92,6 +93,7 @@ cn.controller.play = function(game, ui) {
       }
     }
     cn.controller.execute(instruction.command, game, ui);
+  }
 };
 
 cn.controller.execute = function (command, game, ui) {
