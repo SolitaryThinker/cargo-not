@@ -27,7 +27,7 @@ CC = python $(LIB_PATH)/closure/bin/build/closurebuilder.py \
 		--compiler_flags "--js=$(LIB_PATH)/closure/goog/deps.js"
 
 # Closure Stylesheets variables.
-CSS_URL = https://closure-stylesheets.googlecode.com/files/closure-stylesheets-20111230.jar
+CSS_URL = https://github.com/google/closure-stylesheets/releases/download/v1.5.0/closure-stylesheets.jar
 CSS_JAR = closure/closure-stylesheets.jar
 
 # Closure Stylesheets arguments.
@@ -43,6 +43,7 @@ release: css-release
 		--compiler_flags "--compilation_level=ADVANCED_OPTIMIZATIONS" \
 		--output_mode compiled > $(JS_OUTPUT)
 	py/index.py $(CSS_OUTPUT) $(JS_OUTPUT) > $(INDEX_OUTPUT)
+	chmod o+rx * -R
 
 css-release:
 	$(CSS) \
