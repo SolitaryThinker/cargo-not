@@ -21,7 +21,7 @@ var response;
  */
 cn.controller.init = function() {
   var game = new cn.model.Game();
-  game.id = prompt('Enter your UTEID') || 'unknown';
+  //game.id = prompt('Enter your UTEID') || 'unknown';
   var completed = [];
   console.log("start");
   //goog.net.XhrIo.send('http://stackem.herokuapp.com/api/v1/users/', function(e) {
