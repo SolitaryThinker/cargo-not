@@ -24,22 +24,22 @@ cn.controller.init = function() {
   game.id = prompt('Enter your UTEID') || 'unknown';
   var completed = [];
   console.log("start");
-  goog.net.XhrIo.send('http://stackem.herokuapp.com/api/v1/users/', function(e) {
-      response = e.target.getResponseJson();
-      console.log(e.target.getResponseJson());
-      console.log(e.target.getResponseJson()['id']);
-      game.id = e.target.getResponseJson()['id'];
-      completed = e.target.getResponseJson()['completed_problems'];
-      console.log(game.id);
-      console.log(completed);
-      goog.array.forEach(completed, function(c) {
-        console.log(c);
-        if(cn.LevelData.requiredLevels.indexOf(c) != -1){
-          var tab = goog.dom.getElementByClass(cn.constants.REQUIRED_LEVEL_CLASS_NAMES[c]);
-          goog.dom.classes.add(tab, cn.constants.COMPLETED_LEVEL_CLASS_NAME);
-        }
-      });
-    }, 'POST', '{"user": { "ut_eid": "'+game.id+'"}}', {'content-type': 'application/json'});
+  //goog.net.XhrIo.send('http://stackem.herokuapp.com/api/v1/users/', function(e) {
+      //response = e.target.getResponseJson();
+      //console.log(e.target.getResponseJson());
+      //console.log(e.target.getResponseJson()['id']);
+      //game.id = e.target.getResponseJson()['id'];
+      //completed = e.target.getResponseJson()['completed_problems'];
+      //console.log(game.id);
+      //console.log(completed);
+      //goog.array.forEach(completed, function(c) {
+        //console.log(c);
+        //if(cn.LevelData.requiredLevels.indexOf(c) != -1){
+          //var tab = goog.dom.getElementByClass(cn.constants.REQUIRED_LEVEL_CLASS_NAMES[c]);
+          //goog.dom.classes.add(tab, cn.constants.COMPLETED_LEVEL_CLASS_NAME);
+        //}
+      //});
+    //}, 'POST', '{"user": { "ut_eid": "'+game.id+'"}}', {'content-type': 'application/json'});
 
   var ui = new cn.ui.GameUi(game);
 
@@ -62,10 +62,10 @@ cn.controller.play = function(game, ui) {
       goog.dom.classes.add(goog.dom.getElementByClass("cn_-required_.goog_-tab_-selected_"), cn.constants.COMPLETED_LEVEL_CLASS_NAME);
     }
     game.log.record('won ' + stars + ' stars');
-    var xhr = new XMLHttpRequest();
-    xhr.open('PATCH', 'http://stackem.herokuapp.com/api/v1/users/'+game.id, true);
-    xhr.setRequestHeader("Content-type", "application/json");
-    xhr.send('{ "user": { "completed_problems": "'+game.levelName+'"}}');
+    //var xhr = new XMLHttpRequest();
+    //xhr.open('PATCH', 'http://stackem.herokuapp.com/api/v1/users/'+game.id, true);
+    //xhr.setRequestHeader("Content-type", "application/json");
+    //xhr.send('{ "user": { "completed_problems": "'+game.levelName+'"}}');
     alert('You won with ' + stars + ' stars!');
     return;
   }
@@ -362,7 +362,7 @@ cn.controller.setBotSpeed = function(game, speed) {
  * @param {!cn.LevelData} levelData The new bot speed.
  */
 cn.controller.loadLevel = function(game, ui, name, levelData) {
-  cn.controller.sendLog(game);
+  //cn.controller.sendLog(game);
   game.loadLevel(levelData, name, ui.programStack);
   ui.goalCanvas.clear();
   ui.goalCanvas.drawPathModel(game.goal);
@@ -395,14 +395,14 @@ cn.controller.showHelp = function(game, ui) {
 /**
  * @param {!cn.model.Game} game The current game.
  */
-cn.controller.sendLog = function(game) {
-  // Don't send meaningless logs.
-  if (game.log.size() > 3) {
-    var xhr = new XMLHttpRequest();
-    console.log(game.id);
-    xhr.open('PATCH', 'http://stackem.herokuapp.com/api/v1/users/'+game.id, true);
-    xhr.setRequestHeader("Content-type", "application/json");
-    xhr.send('{ "user": { "log": '+game.log.serialize()+'}}');
-  }
-  game.log.clear();
-};
+//cn.controller.sendLog = function(game) {
+  //// Don't send meaningless logs.
+  //if (game.log.size() > 3) {
+    //var xhr = new XMLHttpRequest();
+    //console.log(game.id);
+    //xhr.open('PATCH', 'http://stackem.herokuapp.com/api/v1/users/'+game.id, true);
+    //xhr.setRequestHeader("Content-type", "application/json");
+    //xhr.send('{ "user": { "log": '+game.log.serialize()+'}}');
+  //}
+  //game.log.clear();
+//};
